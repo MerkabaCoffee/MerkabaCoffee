@@ -428,7 +428,7 @@ const translations = {
         'nav-winter': 'Winter',
         'nav-contact': 'Contact Us',
         'hero-title': 'MERKABA COFFEE',
-        'hero-subtitle': 'Mobile Specialty Coffee • Vintage La Cimbali • Piaggio Ape',
+        'hero-subtitle': 'Mobile Coffee • Vintage La Cimbali • Piaggio Ape',
         'title-about': 'About Us',
         'about-para-1': 'Our little mobile café, Merkaba Coffee, began its adventurous journey on June 30, 2025, at the SUN Festival. Since then, we\'ve traveled to Manas, Microasis, Everness Indian Summer, Balatonakali - at the local Almond Festival, and Rétság at the Farmers\' Market.',
         'about-para-2': 'Currently, you can find our cozy little Piaggio, Merkaba Coffee, in the charming park between the post office and the church in Galgaguta.',
