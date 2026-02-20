@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Merkaba Coffee - Mobil kávézó, Vintage La Cimbali, Piaggio Ape.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hero-styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <title>Merkaba Coffee - Mobile Specialty Coffee</title>
+</head>
+
+<body>
+    <div class="noise"></div>
+
+    <!-- Audio Player -->
+    <audio id="bg-music" src="assets/MUSIC/website banger ozora vibe.wav" loop preload="auto"></audio>
+
+    <header>
+        <div class="header-content">
+            <div class="brand-identity">
+                <a href="#home"><img src="assets/LOGO_Beige.png" alt="Merkaba Logo" class="logo-img"></a>
+            </div>
+
+            <nav class="main-nav">
+                <div class="mobile-nav-header">
+                    <div class="brand-identity">
+                        <a href="#home"><img src="assets/LOGO_Beige.png" alt="Merkaba Logo" class="logo-img"></a>
+                    </div>
+                    <button class="menu-close-btn" id="menu-close">&times;</button>
+                </div>
+
+                <ul>
+                    <li><a href="#home" id="nav-home">Home</a></li>
+                    <li><a href="#about" id="nav-about">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" id="nav-gallery" class="dropdown-toggle">Gallery ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#summer-section" id="nav-summer">Everness Summer</a></li>
+                            <li><a href="#winter-section" id="nav-winter">Winter</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#contact" id="nav-contact">Contact Us</a></li>
+                </ul>
+
+                <!-- Removed mobile audio controls from here, moved to floating button -->
+
+                <div class="nav-footer">
+
+                    <div class="nav-search-panel">
+                        <input type="text" id="mobile-nav-search" placeholder="Keresés...">
+                        <svg class="search-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <div class="mobile-search-results" id="mobile-search-results"></div>
+                    </div>
+                    <div class="nav-social-group">
+                        <a href="https://www.instagram.com/merkabacoffee" target="_blank" class="nav-social-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M7.75 2h8.5c3.175 0 5.75 2.575 5.75 5.75v8.5c0 3.175-2.575 5.75-5.75 5.75h-8.5c-3.175 0-5.75-2.575-5.75-5.75v-8.5c0-3.175 2.575-5.75 5.75-5.75zm8.5 2h-8.5c-2.071 0-3.75 1.679-3.75 3.75v8.5c0 2.071 1.679 3.75 3.75 3.75h8.5c2.071 0 3.75-1.679 3.75-3.75v-8.5c0-2.071-1.679-3.75-3.75-3.75zm-4.25 3.25c2.623 0 4.75 2.127 4.75 4.75s-2.127 4.75-4.75 4.75-4.75-2.127-4.75-4.75 2.127-4.75 4.75-4.75zm0 2c-1.519 0-2.75 1.231-2.75 2.75s1.231 2.75 2.75 2.75 2.75-1.231 2.75-2.75-1.231-2.75-2.75-2.75zm5.5-.5c.552 0 1 .448 1 1s-.448 1-1 1-1-.448-1-1 .448-1 1-1z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/merkabacoffee" target="_blank" class="nav-social-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="nav-lang-switcher">
+                        <span class="lang-btn lang-btn-hu active" onclick="setLanguage('hu')">HU</span>
+                        <span class="lang-btn lang-btn-en" onclick="setLanguage('en')">EN</span>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="header-right">
+                <div class="header-actions">
+                    <div class="header-social-group">
+                        <a href="https://www.instagram.com/merkabacoffee" target="_blank" class="header-social-icon"
+                            title="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M7.75 2h8.5c3.175 0 5.75 2.575 5.75 5.75v8.5c0 3.175-2.575 5.75-5.75 5.75h-8.5c-3.175 0-5.75-2.575-5.75-5.75v-8.5c0-3.175 2.575-5.75 5.75-5.75zm8.5 2h-8.5c-2.071 0-3.75 1.679-3.75 3.75v8.5c0 2.071 1.679 3.75 3.75 3.75h8.5c2.071 0 3.75-1.679 3.75-3.75v-8.5c0-2.071-1.679-3.75-3.75-3.75zm-4.25 3.25c2.623 0 4.75 2.127 4.75 4.75s-2.127 4.75-4.75 4.75-4.75-2.127-4.75-4.75 2.127-4.75 4.75-4.75zm0 2c-1.519 0-2.75 1.231-2.75 2.75s1.231 2.75 2.75 2.75 2.75-1.231 2.75-2.75-1.231-2.75-2.75-2.75zm5.5-.5c.552 0 1 .448 1 1s-.448 1-1 1-1-.448-1-1 .448-1 1-1z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/merkabacoffee" target="_blank" class="header-social-icon"
+                            title="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="search-box-wrapper" id="search-box-wrapper">
+                        <input type="text" id="header-search-input" placeholder="Keresés...">
+                        <button class="search-trigger" id="search-trigger-btn" title="Kattints duplán a kereséshez">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                        <div class="header-search-results" id="header-search-results"></div>
+                    </div>
+
+                    <div class="lang-switcher">
+                        <span class="lang-btn active lang-btn-hu" id="lang-hu" onclick="setLanguage('hu')">HU</span>
+                        <span class="lang-divider">|</span>
+                        <span class="lang-btn lang-btn-en" id="lang-en" onclick="setLanguage('en')">EN</span>
+                    </div>
+
+                    <div class="header-audio-controls">
+                        <button class="audio-btn audio-restart" title="Újraindítás">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                                <path d="M3 3v5h5"></path>
+                            </svg>
+                        </button>
+                        <button class="audio-btn audio-toggle" id="global-mute-btn" title="Némítás/Visszahangosítás">
+                            <svg class="mute-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="mute-on-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <button class="mobile-menu-toggle" id="mobile-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <img src="assets/baldahin.png" alt="" class="baldahin-overlay" loading="lazy">
+            <!-- Large Merkaba Logo -->
+            <img src="assets/logo.png" alt="Merkaba Logo" class="hero-logo-large" width="400" height="400">
+
+            <!-- Text Content -->
+            <div class="hero-text">
+                <h1 id="hero-title">MERKABA COFFEE</h1>
+                <div class="hero-subtitle" id="hero-subtitle">
+                    Mobil kávézó • Vintage La Cimbali • Piaggio Ape
+                </div>
+            </div>
+        </section>
+
+
+        <!-- About Section -->
+        <section id="about" class="about-container">
+            <h2 class="section-title" id="title-about">Rólunk</h2>
+
+            <div class="about-content-wrapper">
+                <div class="about-scrap" style="--r: -0.5deg;">
+                    <div class="about-text-content">
+                        <p id="about-para-1">Kis mobil kávézónk, a Merkaba Coffee, 2025. június 30-án indult kalandos
+                            útjára a SUN Festivalon. Azóta megfordult a Manason, a Microasison, az Everness Indián
+                            Nyáron, Balatonakalin - a helyi Mandula Festivalon és Rétságon, a Termelői piacon.</p>
+                        <p id="about-para-2">Jelenleg Galgagután, a posta és a templom közötti hangulatos parkban
+                            találod meg a kis Piaggio-t, a Merkaba Coffee-t.</p>
+                        <p id="about-para-3">A Merkaba ősi, egyiptomi szent szimbólum, a test, lélek és szellem
+                            tökéletes harmóniáját jelképezi – egy csillagfényű "jármű", ami spirituális utazásra hív. Mi
+                            ezt a varázst látjuk egy csésze kávéban.</p>
+                        <p id="about-para-4">A kávénk titka a vintage kétkaros La Cimbali gépünkben rejlik – egy igazi
+                            80-as évekbeli analóg ikon, ami szenvedéllyel átitatva főzi a krémes espresso-t,
+                            cappuccino-t és egyéb finomságokat.</p>
+                        <p id="about-para-5">Célunk, hogy szívmelengető pillanatokat szerezhessünk vendégeinknek egy
+                            finom meleg kávé, tea vagy forró csoki mellett.</p>
+                        <p id="about-para-6">Keress minket bátran elérhetőségeinken, ha felkeltettük érdeklődésedet,
+                            vagy nézz el hozzánk egy jó kávéra Galgagután.</p>
+                    </div>
+
+                    <div class="contact-info-about">
+                        <p><a href="mailto:merkabacoffee@gmail.com" class="email-link">merkabacoffee@gmail.com</a></p>
+                        <div class="social-links-about">
+                            <a href="https://www.instagram.com/merkabacoffee" target="_blank" class="social-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/merkabacoffee" target="_blank" class="social-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-image-side collage-container">
+                    <img src="assets/piaggioApe.png" alt="Merkaba Coffee Piaggio" class="piaggio-about-new collage-item"
+                        loading="lazy">
+                    <img src="assets/autumn.png" alt="Autumn Decoration" class="autumn-sticker collage-item"
+                        loading="lazy">
+                    <img src="assets/coffeAngel.png" alt="Coffee Angel Sticker" class="angel-sticker collage-item"
+                        loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        </div>
+
+        <!-- Summer Section -->
+        <div id="summer-section" class="seasonal-section summer-theme">
+            <div class="seasonal-header">
+                <img src="assets/flower.png" alt="flowers" class="seasonal-deco deco-summer" loading="lazy" width="340">
+                <div class="paper-piece intro-scrap" style="--r: -0.5deg;">
+                    <h3 id="summer-title">Summer 2025</h3>
+                    <p id="summer-desc">A nyár a szabadság és a végtelen utak ideje volt számunkra. A napsütötte
+                        fesztiválok és a
+                        természet lágy ölelése adta a hátteret a kávézás élményéhez.</p>
+                </div>
+            </div>
+
+            <div class="festivals-timeline">
+                <!-- S.U.N. Festival -->
+                <div class="festival-entry sun-entry" style="--r: 1deg;">
+                    <div class="paper-piece festival-header">
+                        <h4 id="fest-sun">S.U.N. Festival</h4>
+                    </div>
+
+                    <div class="polaroid-gallery-container" id="sun-gallery">
+                        <button class="gallery-arrow prev" onclick="changeGallery('sun', -1)"> &lt; </button>
+
+                        <div class="polaroids-row">
+                            <div class="polaroid-wrapper" style="--r: -2deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/S.U.N./1.jpg" alt="SUN 1" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-sun">S.U.N.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: 1deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/S.U.N./2.jpg" alt="SUN 2" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-sun">S.U.N.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: -1.5deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/S.U.N./3.jpg" alt="SUN 3" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-sun">S.U.N.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="gallery-arrow next" onclick="changeGallery('sun', 1)"> &gt; </button>
+                    </div>
+                </div>
+
+                <!-- Manas Festival -->
+                <div class="festival-entry manas-entry" style="--r: -0.5deg;">
+                    <div class="paper-piece festival-header">
+                        <h4 id="fest-manas">Manas Festival</h4>
+                    </div>
+
+                    <div class="polaroid-gallery-container" id="manas-gallery">
+                        <button class="gallery-arrow prev" onclick="changeGallery('manas', -1)"> &lt; </button>
+
+                        <div class="polaroids-row">
+                            <div class="polaroid-wrapper" style="--r: -2deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Manas/1.jpeg" alt="Manas 1" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name">Manas</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: 1deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Manas/2.JPG" alt="Manas 2" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name">Manas</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: -1.5deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Manas/3.jpeg" alt="Manas 3" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name">Manas</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="gallery-arrow next" onclick="changeGallery('manas', 1)"> &gt; </button>
+                    </div>
+                </div>
+
+                <!-- Microasis Festival -->
+                <div class="festival-entry microasis-entry" style="--r: 1.5deg;">
+                    <div class="paper-piece festival-header">
+                        <h4 id="fest-microasis">Microasis Festival</h4>
+                    </div>
+
+                    <div class="polaroid-gallery-container" id="microasis-gallery">
+                        <button class="gallery-arrow prev" onclick="changeGallery('microasis', -1)"> &lt; </button>
+
+                        <div class="polaroids-row">
+                            <div class="polaroid-wrapper" style="--r: -1.5deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Microasis/1.jpg" alt="Microasis 1" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name">Microasis</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: 2deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Microasis/2.JPG" alt="Microasis 2" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name">Microasis</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: -2deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Microasis/3.JPG" alt="Microasis 3" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name">Microasis</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="gallery-arrow next" onclick="changeGallery('microasis', 1)"> &gt; </button>
+                    </div>
+                </div>
+
+                <!-- Indian Summer Festival -->
+                <div class="festival-entry indian-entry" style="--r: -1deg;">
+                    <div class="paper-piece festival-header">
+                        <h4 id="fest-indian">Everness Indian Summer</h4>
+                    </div>
+
+                    <div class="polaroid-gallery-container" id="indian-gallery">
+                        <button class="gallery-arrow prev" onclick="changeGallery('indian', -1)"> &lt; </button>
+
+                        <div class="polaroids-row">
+                            <div class="polaroid-wrapper" style="--r: 1deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Indian Summer/1.jpeg" alt="Indian 1"
+                                            class="gallery-img" loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-indian">Everness Indian Summer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: -2deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Indian Summer/2.jpeg" alt="Indian 2"
+                                            class="gallery-img" loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-indian">Everness Indian Summer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: 1.5deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Indian Summer/3.jpeg" alt="Indian 3"
+                                            class="gallery-img" loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-indian">Everness Indian Summer</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="gallery-arrow next" onclick="changeGallery('indian', 1)"> &gt; </button>
+                    </div>
+                </div>
+
+                <!-- Mandula Festival -->
+                <div class="festival-entry mandula-entry" style="--r: 0.5deg;">
+                    <div class="paper-piece festival-header">
+                        <h4 id="fest-mandula">Mandula Festival</h4>
+                    </div>
+
+                    <div class="polaroid-gallery-container" id="mandula-gallery">
+                        <button class="gallery-arrow prev" onclick="changeGallery('mandula', -1)"> &lt; </button>
+                        <div class="polaroids-row">
+                            <div class="polaroid-wrapper" style="--r: -1.0deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Mandula/1.jpeg" alt="Mandula 1" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-mandula">Mandula</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: 0.5deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Mandula/2.jpeg" alt="Mandula 2" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-mandula">Mandula</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: -0.5deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Mandula/5.jpeg" alt="Mandula 5"
+                                            class="gallery-img color-adjusted" loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-mandula">Mandula</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="gallery-arrow next" onclick="changeGallery('mandula', 1)"> &gt; </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Winter Section -->
+        <div id="winter-section" class="seasonal-section winter-theme">
+            <div class="seasonal-header">
+                <img src="assets/retro/pine-branch.png" alt="pine branch" class="seasonal-deco deco-winter-branch">
+                <img src="assets/retro/pinecone.png" alt="pinecone" class="seasonal-deco deco-winter-cone">
+                <div class="paper-piece intro-scrap" style="--r: 0.5deg;">
+                    <h3 id="winter-title">Winter 2025</h3>
+                    <p id="winter-desc">A tél a befelé figyelés időszaka. Hamarosan érkeznek a történetek a havas
+                        hegyekről és a
+                        forró kávé melletti beszélgetésekről.</p>
+                </div>
+            </div>
+            <div class="festivals-timeline">
+                <!-- Advent Market -->
+                <div class="festival-entry advent-entry" style="--r: -1.5deg;">
+                    <div class="paper-piece festival-header">
+                        <h4 id="fest-advent">Advent Market</h4>
+                    </div>
+
+                    <div class="polaroid-gallery-container" id="advent-gallery">
+                        <button class="gallery-arrow prev" onclick="changeGallery('advent', -1)"> &lt; </button>
+                        <div class="polaroids-row">
+                            <div class="polaroid-wrapper" style="--r: 2deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Advent/1.jpeg" alt="Advent 1" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-advent">Advent</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: -1deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Advent/2.jpeg" alt="Advent 2" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-advent">Advent</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: 1.2deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Advent/3.JPG" alt="Advent 3" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-advent">Advent</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="gallery-arrow next" onclick="changeGallery('advent', 1)"> &gt; </button>
+                    </div>
+                </div>
+
+                <!-- Galgaguta Section -->
+                <div class="festival-entry galgaguta-entry" style="--r: 1deg;">
+                    <div class="paper-piece festival-header">
+                        <h4 id="fest-galgaguta">Galgaguta</h4>
+                    </div>
+
+                    <div class="polaroid-gallery-container" id="galgaguta-gallery">
+                        <button class="gallery-arrow prev" onclick="changeGallery('galgaguta', -1)"> &lt; </button>
+                        <div class="polaroids-row">
+                            <div class="polaroid-wrapper" style="--r: -1deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Galgaguta/1.gif" alt="Galgaguta 1" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-galgaguta">Galgaguta</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: 1.5deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Galgaguta/2.JPG" alt="Galgaguta 2" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-galgaguta">Galgaguta</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="polaroid-wrapper" style="--r: -0.5deg;">
+                                <div class="polaroid">
+                                    <div class="polaroid-frame">
+                                        <img src="assets/gallery/Galgaguta/3.JPG" alt="Galgaguta 3" class="gallery-img"
+                                            loading="lazy" width="250" height="300">
+                                    </div>
+                                    <div class="polaroid-caption">
+                                        <p class="festival-name" id="caption-galgaguta">Galgaguta</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="gallery-arrow next" onclick="changeGallery('galgaguta', 1)"> &gt; </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="menu-display-section">
+            <h2 class="section-title" id="title-menu">Menü</h2>
+            <div class="menu-presentation">
+                <div class="menu-frame">
+                    <img src="assets/MENU/MENU.png" alt="Merkaba Coffee Menu" class="menu-img" loading="lazy"
+                        width="800" height="1100">
+                </div>
+
+                <!-- Overlapping Stickers -->
+                <img src="assets/COFFE CUPS.png" alt="Coffee Cups" class="menu-sticker cup-sticker" loading="lazy"
+                    width="400" height="400">
+                <img src="assets/LOYALTY CARDS.png" alt="Loyalty Cards" class="menu-sticker loyalty-sticker rotated"
+                    loading="lazy" width="400" height="400">
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <h2 class="section-title" id="title-contact">Contact Us</h2>
+        <section id="contact" class="contact-section">
+            <div class="contact-layout">
+                <div class="paper-scrap contact-scrap scrap-clip" style="--r: 1deg;">
+                    <h3 id="contact-subtitle">Hol találsz?</h3>
+                    <p id="contact-location">Jelenleg <strong>Galgagután</strong></p>
+                    <div class="contact-info">
+                        <p>Email: <a href="mailto:merkabacoffee@gmail.com"
+                                class="contact-link">merkabacoffee@gmail.com</a></p>
+                        <div class="social-links-contact" style="margin-top: 1rem; display: flex; gap: 1rem;">
+                            <a href="https://www.instagram.com/merkabacoffee" target="_blank"
+                                class="contact-social-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/merkabacoffee" target="_blank"
+                                class="contact-social-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <div id="merkaba-map" class="adventures-map">
+                        <div class="map-sidebar">
+                            <h3 class="map-title" id="map-title">Adventures</h3>
+                            <div class="location-list" id="location-list"></div>
+                        </div>
+                        <div id="map-display"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impressum / Footer -->
+        <footer class="impressum-section">
+            <div class="impressum-header" onclick="toggleImpressum()">
+                <h3 id="impressum-label">IMPRESSUM</h3>
+                <span class="impressum-toggle" id="impressum-toggle">▼</span>
+            </div>
+            <div class="impressum-content" id="impressum-content">
+                <div class="impressum-details">
+                    <h4 id="impressum-owner-label">Üzemeltető adatai:</h4>
+                    <p><strong><span id="label-name">Név</span>:</strong> Merkaba Coffee</p>
+                    <p><strong><span id="label-address">Székhely</span>:</strong> Galgaguta, Magyarország</p>
+                    <p><strong>E-mail:</strong> merkabacoffee@gmail.com</p>
+                    <p><strong><span id="label-hosting">Tárhelyszolgáltató</span>:</strong> GitHub Pages / Google Cloud
+                    </p>
+
+                    <h4 style="margin-top: 1.5rem;" id="label-copyright-title">Szerzői jogok:</h4>
+                    <p id="impressum-copyright-text">A weboldalon megjelenő minden tartalom (szöveg, kép, grafika, logó)
+                        a Merkaba Coffee szellemi
+                        tulajdona. Minden jog fenntartva. Az oldal tartalmának másolása vagy felhasználása csak előzetes
+                        írásbeli engedéllyel lehetséges.</p>
+
+                    <p class="impressum-small" id="footer-rights">© 2025 Merkaba Coffee. Minden jog fenntartva.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Floating Audio Control -->
+    <div class="floating-audio-control">
+        <button class="audio-btn" id="floating-mute-btn" title="Némítás/Visszahangosítás">
+            <svg class="mute-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <svg class="mute-on-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-content">
+            <button class="lightbox-prev" id="lb-prev">&lt;</button>
+            <img id="lightbox-img" src="" alt="Full View">
+            <button class="lightbox-next" id="lb-next">&gt;</button>
+        </div>
+        <div id="lightbox-caption"><span id="lightbox-caption-text"></span></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

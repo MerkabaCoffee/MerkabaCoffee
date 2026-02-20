@@ -1,0 +1,327 @@
+.hero-section {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 6rem 0 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 100vh;
+    max-height: none;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 4rem 0 1rem;
+        min-height: 70vh;
+    }
+}
+
+.baldahin-overlay {
+    position: absolute;
+    top: -5px;
+    left: -5%;
+    width: 110%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+    object-fit: cover;
+    opacity: 1;
+}
+
+/* Map Pins Color / Map Background - Filter only tiles */
+.leaflet-tile-container {
+    filter: grayscale(1) sepia(0.2) contrast(1.1) brightness(0.95);
+}
+
+#map-display {
+    filter: none !important;
+}
+
+/* Subtler Hover Effects */
+.about-scrap:hover {
+    transform: rotate(-0.5deg) scale(1.01) !important;
+    box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.08) !important;
+}
+
+.piaggio-about-new:hover {
+    transform: scale(1.02) !important;
+}
+
+.menu-sticker.cup-sticker:hover {
+    transform: rotate(15deg) scale(1.05) !important;
+}
+
+.loyalty-sticker.rotated:hover {
+    transform: rotate(-8deg) scale(1.03) !important;
+}
+
+/* Header UI Elements */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.search-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1a1a1a;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.search-trigger:hover {
+    transform: scale(1.1);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background: #1a1a1a;
+    display: block;
+    transition: 0.3s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1150px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+}
+
+.hero-logo-large {
+    width: clamp(240px, 35vw, 420px);
+    /* Slightly smaller to prevent overlap */
+    height: auto;
+    z-index: 10;
+    filter: drop-shadow(20px 20px 40px rgba(0, 0, 0, 0.15));
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.hero-text {
+    text-align: center;
+    z-index: 8;
+    margin-top: 2rem;
+    /* More space between logo and text */
+}
+
+.hero-text h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    letter-spacing: 0.5rem;
+    /* Tightened Betűköz */
+    line-height: 1.1;
+    margin: 0;
+    color: #1a1a1a;
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
+}
+
+.hero-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    margin-top: 0.5rem;
+    /* Közelebb a főcímhez */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+/* About Us - Summer Theme Style */
+.about-container {
+    padding: 6rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4rem;
+    max-width: 1200px;
+    padding: 0 2rem;
+    flex-wrap: wrap;
+}
+
+.about-scrap {
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.75) !important;
+    /* Clearer tracing paper */
+    backdrop-filter: blur(10px) !important;
+    padding: 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.05) !important;
+    transform: rotate(var(--r, 0deg));
+    position: relative;
+    background-image: none !important;
+    /* Force remove grid paper */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease !important;
+}
+
+.about-scrap:hover {
+    transform: rotate(-0.5deg) scale(1.01) !important;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.1) !important;
+    z-index: 20;
+}
+
+/* Ensure icons are black */
+.social-links-about .social-icon {
+    color: #1a1a1a !important;
+}
+
+.about-text-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    color: #1a1a1a;
+    text-align: justify;
+    font-size: 1.1rem;
+}
+
+.piaggio-about-new {
+    width: clamp(250px, 35vw, 500px);
+    height: auto;
+    border-radius: 0;
+    /* No circle */
+    filter: none;
+    /* No shadow */
+    border: none;
+    /* No border */
+    display: block;
+    object-fit: contain;
+    /* No distortion */
+    transition: transform 0.5s ease !important;
+}
+
+.piaggio-about-new:hover {
+    transform: scale(1.02) !important;
+}
+
+.contact-info-about {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #1a1a1a;
+    text-align: center;
+}
+
+.email-link {
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: #1a1a1a;
+    text-decoration: none;
+    /* No underline */
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.social-links-about {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.social-icon svg {
+    transition: transform 0.3s ease;
+    fill: #1a1a1a;
+    /* Force black fill */
+}
+
+.social-icon:hover svg {
+    transform: scale(1.2);
+}
+
+/* Menu Stickers - Adjusted Size & Position */
+.menu-sticker.cup-sticker {
+    width: clamp(320px, 35vw, 420px) !important;
+    right: -5% !important;
+    top: 5% !important;
+    z-index: 15 !important;
+    transform: rotate(15deg) !important;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.menu-sticker.cup-sticker:hover {
+    transform: rotate(15deg) scale(1.05) !important;
+}
+
+.loyalty-sticker.rotated {
+    transform: rotate(-8deg) !important;
+    width: clamp(300px, 30vw, 420px) !important;
+    right: -10% !important;
+    bottom: -5% !important;
+    top: auto !important;
+    filter: drop-shadow(12px 12px 30px rgba(0, 0, 0, 0.18)) !important;
+    z-index: 15 !important;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.loyalty-sticker.rotated:hover {
+    transform: rotate(-8deg) scale(1.03) !important;
+}
+
+/* Seasonal Decorations Interaction */
+.seasonal-deco {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    pointer-events: auto !important;
+    /* Make them interactive */
+    cursor: pointer;
+}
+
+.seasonal-deco:hover {
+    transform: scale(1.08) !important;
+}
+
+.deco-summer:hover {
+    transform: rotate(-5deg) scale(1.1) !important;
+}
+
+.deco-winter-cone:hover {
+    transform: rotate(10deg) scale(1.15) !important;
+}
+
+/* B&W / Sepia Map Tint Styles - Handled at tile level now */
+
+.map-sidebar {
+    background: #fcf9f2 !important;
+}
+
+.location-item:hover {
+    background-color: #f5f2e9 !important;
+}
+
+/* Responsive */
+@media (max-width: 1150px) {
+    .about-content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-image-side {
+        order: -1;
+        margin-bottom: 3rem;
+    }
+
+    .piaggio-about-new {
+        width: 250px;
+    }
+}
