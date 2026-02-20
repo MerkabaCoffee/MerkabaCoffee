@@ -569,6 +569,31 @@ function initLightbox() {
     window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
     if (prevBtn) prevBtn.onclick = () => navigateLightbox(-1);
     if (nextBtn) nextBtn.onclick = () => navigateLightbox(1);
+
+    // Touch Support for Mobile (Swipe)
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    modal.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    modal.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50; // Minimum distance for swipe
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Swiped Left -> Next Image
+            navigateLightbox(1);
+        }
+        if (touchEndX > touchStartX + swipeThreshold) {
+            // Swiped Right -> Previous Image
+            navigateLightbox(-1);
+        }
+    }
 }
 
 function openLightbox(galleryId, index = null) {
