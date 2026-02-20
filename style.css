@@ -9,8 +9,6 @@
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
-    width: 100%;
 }
 
 * {
@@ -28,7 +26,6 @@ body {
     color: var(--color-text);
     min-height: 100vh;
     overflow-x: hidden;
-    width: 100%;
     position: relative;
 }
 
@@ -634,9 +631,10 @@ h2[id] {
 }
 
 .seasonal-header {
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
     background: #1a1a1a;
-    padding: 6rem 1rem;
+    padding: 6rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -644,7 +642,6 @@ h2[id] {
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: transform 0.4s ease;
-    overflow: hidden;
 }
 
 .seasonal-header:hover {
@@ -1646,9 +1643,9 @@ h2[id] {
     padding: 2rem 0;
     margin-top: 6rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 .impressum-header {
@@ -1921,10 +1918,28 @@ h2[id] {
         height: 20px;
     }
 
-    /* Hide lightbox arrows on mobile */
+    /* Lightbox arrows visible and easier to touch on mobile */
     .lightbox-prev,
     .lightbox-next {
-        display: none !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1) !important;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        font-size: 2.5rem;
+        padding: 0 !important;
+        bottom: 20px;
+        /* Move to bottom on mobile so they don't cover the image center */
+    }
+
+    .lightbox-prev {
+        left: 20px;
+    }
+
+    .lightbox-next {
+        right: 20px;
     }
 }
 
@@ -1936,47 +1951,32 @@ body.mobile-active header .header-content>*:not(.main-nav) {
 
 .lightbox-prev,
 .lightbox-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.1) !important;
+    background: none !important;
     border: none !important;
     color: white !important;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
+    padding: 2rem;
+    transition: opacity 0.3s ease;
+    font-family: serif;
+    /* For cleaner chevrons if using text */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 3010;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .lightbox-prev:hover,
 .lightbox-next:hover {
-    background: rgba(255, 255, 255, 0.2) !important;
+    opacity: 0.6;
 }
 
 .lightbox-prev {
-    left: 10px;
+    position: absolute;
+    left: 20px;
 }
 
 .lightbox-next {
-    right: 10px;
-}
-
-@media (max-width: 768px) {
-
-    .lightbox-prev,
-    .lightbox-next {
-        width: 44px;
-        height: 44px;
-        font-size: 1.5rem;
-        background: rgba(255, 255, 255, 0.15) !important;
-    }
+    position: absolute;
+    right: 20px;
 }
 
 /* Floating Audio Control */
@@ -2030,10 +2030,7 @@ body.mobile-active header .header-content>*:not(.main-nav) {
 (hover: none),
 (pointer: coarse) {
 
-    .gallery-arrow,
-    .lightbox-prev,
-    .lightbox-next {
-        display: flex !important;
-        opacity: 0.7;
+    .gallery-arrow {
+        display: none !important;
     }
 }

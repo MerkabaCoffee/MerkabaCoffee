@@ -570,30 +570,14 @@ function initLightbox() {
     if (prevBtn) prevBtn.onclick = () => navigateLightbox(-1);
     if (nextBtn) nextBtn.onclick = () => navigateLightbox(1);
 
-    // Touch Support for Mobile (Swipe)
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    modal.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    modal.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-        const swipeThreshold = 50; // Minimum distance for swipe
-        if (touchEndX < touchStartX - swipeThreshold) {
-            // Swiped Left -> Next Image
-            navigateLightbox(1);
+    // Keyboard Support
+    document.addEventListener('keydown', (e) => {
+        if (modal.style.display === "block") {
+            if (e.key === "ArrowLeft") navigateLightbox(-1);
+            if (e.key === "ArrowRight") navigateLightbox(1);
+            if (e.key === "Escape") modal.style.display = "none";
         }
-        if (touchEndX > touchStartX + swipeThreshold) {
-            // Swiped Right -> Previous Image
-            navigateLightbox(-1);
-        }
-    }
+    });
 }
 
 function openLightbox(galleryId, index = null) {
@@ -643,6 +627,28 @@ function navigateLightbox(dir) {
     currentLightboxIndex = (currentLightboxIndex + dir + gallery.images.length) % gallery.images.length;
     updateLightboxContent();
 }
+
+// Swipe Support for Lightbox
+let touchStartX = 0;
+let touchEndX = 0;
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    if (touchEndX < touchStartX - swipeThreshold) {
+        navigateLightbox(1); // Swipe Left -> Next
+    } else if (touchEndX > touchStartX + swipeThreshold) {
+        navigateLightbox(-1); // Swipe Right -> Prev
+    }
+}
+
+document.getElementById('lightbox-modal').addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+document.getElementById('lightbox-modal').addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, { passive: true });
 
 /**
  * Optimized Gallery Change with Fading and Preloading
