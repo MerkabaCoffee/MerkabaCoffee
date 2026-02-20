@@ -1,7 +1,6 @@
 .hero-section {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    padding: 6rem 0 3rem;
+    width: 100%;
+    padding: 6rem 1rem 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,7 +107,7 @@
 
 .hero-logo-large {
     width: clamp(240px, 35vw, 420px);
-    /* Slightly smaller to prevent overlap */
+    max-width: 90vw;
     height: auto;
     z-index: 10;
     filter: drop-shadow(20px 20px 40px rgba(0, 0, 0, 0.15));
@@ -126,12 +125,13 @@
 .hero-text h1 {
     font-size: clamp(2.5rem, 6vw, 5rem);
     font-weight: 900;
-    letter-spacing: 0.5rem;
-    /* Tightened Betűköz */
+    letter-spacing: 0.2rem;
     line-height: 1.1;
     margin: 0;
     color: #1a1a1a;
     text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
+    word-break: break-word;
+    max-width: 100%;
 }
 
 .hero-subtitle {
@@ -323,5 +323,24 @@
 
     .piaggio-about-new {
         width: 250px;
+    }
+
+    /* Prevent sticker overflow */
+    .menu-sticker.cup-sticker,
+    .loyalty-sticker.rotated {
+        position: relative !important;
+        right: auto !important;
+        bottom: auto !important;
+        top: auto !important;
+        left: auto !important;
+        width: 80% !important;
+        max-width: 300px !important;
+        margin: 1rem auto !important;
+        transform: none !important;
+        display: block !important;
+    }
+
+    .seasonal-deco {
+        max-width: 40vw !important;
     }
 }

@@ -9,6 +9,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 * {
@@ -26,6 +28,7 @@ body {
     color: var(--color-text);
     min-height: 100vh;
     overflow-x: hidden;
+    width: 100%;
     position: relative;
 }
 
@@ -631,10 +634,9 @@ h2[id] {
 }
 
 .seasonal-header {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+    width: 100%;
     background: #1a1a1a;
-    padding: 6rem 0;
+    padding: 6rem 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -642,6 +644,7 @@ h2[id] {
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: transform 0.4s ease;
+    overflow: hidden;
 }
 
 .seasonal-header:hover {
@@ -1643,9 +1646,9 @@ h2[id] {
     padding: 2rem 0;
     margin-top: 6rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+    width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .impressum-header {
