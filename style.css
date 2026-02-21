@@ -29,15 +29,6 @@ body {
     position: relative;
 }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
 .noise {
     position: fixed;
     top: 0;
@@ -54,7 +45,6 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-    overflow-x: hidden;
 }
 
 /* Header & Navigation */
@@ -638,11 +628,11 @@ h2[id] {
     margin: 4rem 0 8rem;
     position: relative;
     padding: 2rem;
-    overflow: hidden;
 }
 
 .seasonal-header {
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
     background: #1a1a1a;
     padding: 6rem 0;
     display: flex;
@@ -652,13 +642,6 @@ h2[id] {
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: transform 0.4s ease;
-}
-
-@media (min-width: 1201px) {
-    .seasonal-header {
-        width: 100vw;
-        margin-left: calc(-50vw + 50%);
-    }
 }
 
 .seasonal-header:hover {
@@ -886,13 +869,12 @@ h2[id] {
     transform: rotate(0deg) scale(1.02);
 }
 
-.menu-frame .hero-logo-large {
-    width: clamp(280px, 80vw, 420px);
+.menu-frame .menu-img {
+    max-width: 650px;
+    width: 100%;
     height: auto;
-    z-index: 10;
-    filter: drop-shadow(20px 20px 40px rgba(0, 0, 0, 0.15));
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    border: none;
+    filter: drop-shadow(20px 20px 50px rgba(0, 0, 0, 0.15));
 }
 
 .menu-sticker {
@@ -1661,16 +1643,9 @@ h2[id] {
     padding: 2rem 0;
     margin-top: 6rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    width: 100%;
-    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
     box-sizing: border-box;
-}
-
-@media (min-width: 1201px) {
-    .impressum-section {
-        width: 100vw;
-        margin-left: calc(-50vw + 50%);
-    }
 }
 
 .impressum-header {

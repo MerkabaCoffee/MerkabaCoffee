@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initGlobalSearch();
     initKeyboardNav();
     initAudioPlayer();
-    initGallerySwipe();
 
     // Proactive gallery preloading for all first sets
     preloadInitialGalleryImages();
@@ -642,41 +641,14 @@ function handleSwipe() {
     }
 }
 
-const lbModal = document.getElementById('lightbox-modal');
-if (lbModal) {
-    lbModal.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
+document.getElementById('lightbox-modal').addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
 
-    lbModal.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, { passive: true });
-}
-
-// Swipe Support for Mini Galleries
-function initGallerySwipe() {
-    document.querySelectorAll('.polaroid-gallery-container').forEach(container => {
-        let gTouchStartX = 0;
-        let gTouchEndX = 0;
-
-        container.addEventListener('touchstart', (e) => {
-            gTouchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        container.addEventListener('touchend', (e) => {
-            gTouchEndX = e.changedTouches[0].screenX;
-            const swipeThreshold = 50;
-            const galleryId = container.id.split('-')[0];
-
-            if (gTouchEndX < gTouchStartX - swipeThreshold) {
-                changeGallery(galleryId, 1); // Swipe Left -> Next
-            } else if (gTouchEndX > gTouchStartX + swipeThreshold) {
-                changeGallery(galleryId, -1); // Swipe Right -> Prev
-            }
-        }, { passive: true });
-    });
-}
+document.getElementById('lightbox-modal').addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, { passive: true });
 
 /**
  * Optimized Gallery Change with Fading and Preloading
