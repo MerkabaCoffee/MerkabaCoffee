@@ -655,7 +655,7 @@ h2[id] {
 @media (max-width: 1150px) {
     .seasonal-header {
         margin-left: -1rem;
-        width: 100vw;
+        width: calc(100% + 2rem);
     }
 }
 
@@ -1287,19 +1287,16 @@ h2[id] {
 @media (max-width: 1150px) {
     .container {
         padding: 0 1rem;
-        overflow-x: hidden;
-        /* Prevent anything from bleeding out */
-        max-width: 100%;
+        /* Removed overflow-x: hidden to allow breakout sections to work */
     }
 
     .hero-section,
     .seasonal-header,
     .impressum-section {
-        width: 100vw !important;
-        max-width: 100vw !important;
+        width: calc(100% + 2rem) !important;
         margin-left: -1rem !important;
         margin-right: -1rem !important;
-        overflow-x: hidden;
+        max-width: none !important;
     }
 
     .main-nav {
@@ -1584,7 +1581,9 @@ h2[id] {
 
     .section-title {
         font-size: 2.4rem;
-        margin: 4rem auto 2rem;
+        margin: 4rem 0 2rem;
+        width: 100%;
+        text-align: center;
     }
 
     .intro-scrap p {
@@ -1679,10 +1678,15 @@ h2[id] {
     margin-top: 6rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     width: 100vw;
-    margin-left: -1rem;
-    /* Aligned with container padding */
+    margin-left: calc(-50vw + 50%);
     box-sizing: border-box;
-    overflow-x: hidden;
+}
+
+@media (max-width: 1150px) {
+    .impressum-section {
+        margin-left: -1rem;
+        width: calc(100% + 2rem);
+    }
 }
 
 .impressum-header {
