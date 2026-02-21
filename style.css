@@ -1126,7 +1126,7 @@ h2[id] {
     width: 270px;
     bottom: -60px;
     left: -90px;
-    z-index: 1;
+    z-index: 5;
     transform: rotate(-10deg);
 }
 
