@@ -1639,17 +1639,38 @@ h2[id] {
         white-space: nowrap;
     }
 
+    .menu-display-section {
+        padding: 4rem 1rem;
+        width: 100%;
+    }
+
     .menu-presentation {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .menu-frame {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        transform: rotate(-0.5deg);
+    }
+
+    .menu-frame .menu-img {
+        width: 100%;
+        height: auto;
+        display: block;
     }
 
     .menu-sticker {
         position: static !important;
-        width: 70% !important;
-        max-width: 320px;
-        margin: 1rem auto;
+        width: 60% !important;
+        max-width: 280px;
+        margin: 0.5rem auto;
         transform: none !important;
+        display: block;
     }
 
     .adventures-map {
