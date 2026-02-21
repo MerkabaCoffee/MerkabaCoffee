@@ -629,30 +629,6 @@ function navigateLightbox(dir) {
     updateLightboxContent();
 }
 
-// Swipe Support for Main Gallery (Inline)
-function initGallerySwipe() {
-    document.querySelectorAll('.polaroid-gallery-container').forEach(container => {
-        let gTouchStart = 0;
-        let gTouchEnd = 0;
-
-        container.addEventListener('touchstart', (e) => {
-            gTouchStart = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        container.addEventListener('touchend', (e) => {
-            gTouchEnd = e.changedTouches[0].screenX;
-            const threshold = 50;
-            const galleryId = container.id.split('-')[0];
-
-            if (gTouchEnd < gTouchStart - threshold) {
-                changeGallery(galleryId, 1); // Swipe Left -> Next
-            } else if (gTouchEnd > gTouchStart + threshold) {
-                changeGallery(galleryId, -1); // Swipe Right -> Prev
-            }
-        }, { passive: true });
-    });
-}
-
 // Swipe Support for Lightbox
 let touchStartX = 0;
 let touchEndX = 0;
@@ -666,14 +642,41 @@ function handleSwipe() {
     }
 }
 
-document.getElementById('lightbox-modal').addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-}, { passive: true });
+const lbModal = document.getElementById('lightbox-modal');
+if (lbModal) {
+    lbModal.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
 
-document.getElementById('lightbox-modal').addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-}, { passive: true });
+    lbModal.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+}
+
+// Swipe Support for Mini Galleries
+function initGallerySwipe() {
+    document.querySelectorAll('.polaroid-gallery-container').forEach(container => {
+        let gTouchStartX = 0;
+        let gTouchEndX = 0;
+
+        container.addEventListener('touchstart', (e) => {
+            gTouchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+            gTouchEndX = e.changedTouches[0].screenX;
+            const swipeThreshold = 50;
+            const galleryId = container.id.split('-')[0];
+
+            if (gTouchEndX < gTouchStartX - swipeThreshold) {
+                changeGallery(galleryId, 1); // Swipe Left -> Next
+            } else if (gTouchEndX > gTouchStartX + swipeThreshold) {
+                changeGallery(galleryId, -1); // Swipe Right -> Prev
+            }
+        }, { passive: true });
+    });
+}
 
 /**
  * Optimized Gallery Change with Fading and Preloading
