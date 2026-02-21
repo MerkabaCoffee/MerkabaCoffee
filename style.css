@@ -1057,7 +1057,7 @@ h2[id] {
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
-    background: #EECA94;
+    background: #1a1a1a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1161,7 +1161,7 @@ h2[id] {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: #EECA94;
+    background: #1a1a1a;
     border: 3px solid white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     display: flex;
