@@ -16,15 +16,19 @@
     .hero-section {
         padding: 4rem 0 1rem;
         min-height: 70vh;
+        width: 100vw;
+        margin-left: -1rem;
+        /* Adjusting for reduced container padding */
+        max-width: 100vw;
+        left: 0;
     }
 }
 
 .baldahin-overlay {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw;
+    left: 0;
+    width: 100%;
     height: 100%;
     z-index: 5;
     pointer-events: none;
@@ -34,9 +38,10 @@
 
 @media (max-width: 768px) {
     .baldahin-overlay {
-        min-width: 120vw;
-        /* Slight extra width on mobile to be safe */
-        object-position: top center;
+        width: 100%;
+        object-position: center top;
+        height: auto;
+        min-height: 100%;
     }
 }
 
