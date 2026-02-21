@@ -1281,14 +1281,25 @@ h2[id] {
         display: flex;
         justify-content: space-between;
         padding: 0 1rem;
+        width: 100%;
     }
 
     .brand-identity {
         max-width: 45px;
     }
-}
 
-@media (max-width: 1150px) {
+    .header-social-group,
+    .search-box-wrapper,
+    .lang-switcher,
+    .header-audio-controls {
+        display: none !important;
+    }
+
+    .mobile-menu-toggle {
+        display: flex !important;
+        z-index: 1010;
+    }
+
     .container {
         padding: 0 1rem;
         /* Removed overflow-x: hidden to allow breakout sections to work */
@@ -1658,11 +1669,7 @@ h2[id] {
     }
 
     .header-right {
-        gap: 1rem;
-    }
-
-    .lang-switcher {
-        display: none;
+        gap: 0.5rem;
     }
 
     .impressum-header h3 {
