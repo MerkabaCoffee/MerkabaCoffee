@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initGlobalSearch();
     initKeyboardNav();
     initAudioPlayer();
+    initGallerySwipe();
 
     // Proactive gallery preloading for all first sets
     preloadInitialGalleryImages();
@@ -626,6 +627,30 @@ function navigateLightbox(dir) {
     const gallery = galleries[currentLightboxGallery];
     currentLightboxIndex = (currentLightboxIndex + dir + gallery.images.length) % gallery.images.length;
     updateLightboxContent();
+}
+
+// Swipe Support for Main Gallery (Inline)
+function initGallerySwipe() {
+    document.querySelectorAll('.polaroid-gallery-container').forEach(container => {
+        let gTouchStart = 0;
+        let gTouchEnd = 0;
+
+        container.addEventListener('touchstart', (e) => {
+            gTouchStart = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+            gTouchEnd = e.changedTouches[0].screenX;
+            const threshold = 50;
+            const galleryId = container.id.split('-')[0];
+
+            if (gTouchEnd < gTouchStart - threshold) {
+                changeGallery(galleryId, 1); // Swipe Left -> Next
+            } else if (gTouchEnd > gTouchStart + threshold) {
+                changeGallery(galleryId, -1); // Swipe Right -> Prev
+            }
+        }, { passive: true });
+    });
 }
 
 // Swipe Support for Lightbox

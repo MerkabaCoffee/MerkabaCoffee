@@ -9,12 +9,17 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    /* Clean touch interface */
 }
 
 body {
@@ -26,6 +31,8 @@ body {
     color: var(--color-text);
     min-height: 100vh;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
     position: relative;
 }
 
@@ -642,6 +649,13 @@ h2[id] {
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: transform 0.4s ease;
+}
+
+@media (max-width: 1150px) {
+    .seasonal-header {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
 }
 
 .seasonal-header:hover {
@@ -1646,6 +1660,13 @@ h2[id] {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     box-sizing: border-box;
+}
+
+@media (max-width: 1150px) {
+    .impressum-section {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
 }
 
 .impressum-header {

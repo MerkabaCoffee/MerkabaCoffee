@@ -34,9 +34,17 @@
 
 @media (max-width: 768px) {
     .baldahin-overlay {
-        min-width: 120vw;
-        /* Slight extra width on mobile to be safe */
+        width: 100%;
+        min-width: 100%;
+        height: auto;
+        min-height: 100%;
         object-position: top center;
+    }
+
+    .hero-section {
+        width: 100%;
+        margin-left: 0;
+        left: 0;
     }
 }
 
