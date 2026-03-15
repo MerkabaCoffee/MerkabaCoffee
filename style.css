@@ -9,6 +9,24 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 100%;
+    /* Default 16px */
+}
+
+/* Tablet font scaling */
+@media (max-width: 1150px) {
+    html {
+        font-size: 90%;
+        /* Scales all rem units to 90% (e.g., 14.4px) */
+    }
+}
+
+/* Mobile font scaling */
+@media (max-width: 768px) {
+    html {
+        font-size: 80%;
+        /* Scales all rem units to 80% (e.g., 12.8px) */
+    }
 }
 
 * {
